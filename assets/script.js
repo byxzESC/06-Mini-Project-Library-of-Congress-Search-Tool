@@ -3,6 +3,7 @@ var formEl = $('#search-form');
 var textInputEl = $('#search-input');
 var formatEl = $('#format-input');
 var submitBtn = $('#submit-button');
+var resultURL = './result.html';
 
 var search;
 console.log('script is working');
@@ -17,13 +18,14 @@ function getSearchResult (search, searchTerm) {
     }
 
     console.log(apiURL);
-
+    // fetches information with api URL
     fetch(apiURL)
         .then(function (response) {
             if (response.ok) {
             response.json()
             .then(function (data) {
-                console.log(data);
+                // data.content.results[]
+                // inside result we want date, description, title, URL
                 // data will be what we get from the api
                 // search will be the item user entered
                 displayResult(data, search, searchTerm);
@@ -38,9 +40,10 @@ function getSearchResult (search, searchTerm) {
     
 }
 
-
+// display result html
 function displayResult (data, search, searchTerm) {
-
+    console.log('location', document.location);
+    location.replace(resultURL);
 }
 
 
